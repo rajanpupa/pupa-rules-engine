@@ -24,13 +24,14 @@ public class ConditionParser {
 
         for(JsonNode conditionNode: conditionsNode){
             String conditionType = conditionNode.get("type").asText();
-            Condition newCondition;
+            Condition newCondition = null;
 
             if(ConditionTypeEnum.SIMPLE_CONDITION.toString().equalsIgnoreCase(conditionType)){
                 newCondition = new SimpleCondition();
                 newCondition.setType(ConditionTypeEnum.SIMPLE_CONDITION);
                 newCondition.setField(conditionNode.get("field").asText());
                 newCondition.setOperator(getConditionOperator(conditionNode.get("operator").asText()));
+                newCondition.setValue(conditionNode.get("value").asText());
             } else if(ConditionTypeEnum.AND_CONDITION.toString().equalsIgnoreCase(conditionType)){
                 newCondition = new AndCondition();
                 newCondition.setType(ConditionTypeEnum.AND_CONDITION);
@@ -40,6 +41,7 @@ public class ConditionParser {
                 newCondition.setType(ConditionTypeEnum.OR_CONDITION);
                 newCondition.setConditions(parse(conditionNode.get("conditions")));
             }
+            conditions.add(newCondition);
         }
         return conditions;
     }
