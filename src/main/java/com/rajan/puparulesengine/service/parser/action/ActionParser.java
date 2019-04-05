@@ -12,7 +12,7 @@ import java.util.List;
 public class ActionParser {
 
     public List<Action> parse(JsonNode actionsNode) throws Exception {
-        List<Action> conditions = new ArrayList<>();
+        List<Action> actions = new ArrayList<>();
 
         if(!actionsNode.isArray()){
             throw new Exception("Actions should be an array");
@@ -20,14 +20,16 @@ public class ActionParser {
 
         for(JsonNode actionNode: actionsNode){
             String actionType = actionNode.get("type").asText();
+            Action action = null;
 
             if("simpleaction".equalsIgnoreCase(actionType)){
-                Action action = new SimpleAction();
+                action = new SimpleAction();
                 action.setType("simpleaction");
                 action.setField(actionNode.get("field").asText());
                 action.setValue(actionNode.get("value").asText());
             }
+            actions.add(action);
         }
-        return conditions;
+        return actions;
     }
 }
