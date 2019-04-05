@@ -27,23 +27,11 @@
 
 					},
 					{
-                    					    "type": "orcondition",
+                    					    "type": "andcondition",
                     					    "conditions": [
                     					            {
-                    					                "type": "simplecondition",
-                    					                "field": "citizen",
-                                                        "operator": "equals",
-                                                        "value": ""
-                    					            },
-                    					            {
-                    					                "type": "simplecondition",
-                    					                "field": "citizen",
-                    					                "operator": "equals",
-                    					                "value": "unknown"
-                    					            },
-                    					            {
                                                         "type": "simplecondition",
-                                                        "field": "citizenship",
+                                                        "field": "citizen",
                                                         "operator": "fieldnotset",
                                                         "value": ""
                                                     }

@@ -6,7 +6,6 @@ public class ORCondition extends Condition {
     @Override
     public boolean evaluate(JsonNode node) {
         for(Condition condition: this.conditions){
-
             if(condition.evaluate(node)){
                 return true;
             }
