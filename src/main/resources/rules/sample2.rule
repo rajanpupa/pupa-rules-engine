@@ -1,0 +1,61 @@
+{
+	"type": "rule",
+	"name": "Nepali citizen rule",
+	"conditions" : [
+					{
+					    "type": "orcondition",
+					    "conditions": [
+					            {
+					                "type": "simplecondition",
+					                "field": "country_of_birth",
+                                    "operator": "equals",
+                                    "value": "nepal"
+					            },
+					            {
+					                "type": "simplecondition",
+					                "field": "citizenship_of_father",
+					                "operator": "equals",
+					                "value": "nepal"
+					            },
+					            {
+                                    "type": "simplecondition",
+                                    "field": "citizenship_of_mother",
+                                    "operator": "equals",
+                                    "value": "nepal"
+                                }
+					    ]
+
+					},
+					{
+                    					    "type": "orcondition",
+                    					    "conditions": [
+                    					            {
+                    					                "type": "simplecondition",
+                    					                "field": "citizen",
+                                                        "operator": "equals",
+                                                        "value": ""
+                    					            },
+                    					            {
+                    					                "type": "simplecondition",
+                    					                "field": "citizen",
+                    					                "operator": "equals",
+                    					                "value": "unknown"
+                    					            },
+                    					            {
+                                                        "type": "simplecondition",
+                                                        "field": "citizenship",
+                                                        "operator": "fieldnotset",
+                                                        "value": ""
+                                                    }
+                    					    ]
+
+                    					}
+	],
+	"action": [
+					{
+					    "type": "simpleaction",
+						"field": "citizen",
+						"value": "nepal"
+					}
+	]
+}

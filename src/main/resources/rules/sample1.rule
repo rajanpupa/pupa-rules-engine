@@ -1,0 +1,19 @@
+{
+	"type": "rule",
+	"name": "Nepali citizen rule",
+	"conditions" : [
+					{
+					    "type": "simplecondition",
+						"field": "country_of_birth",
+						"operator": "equals",
+						"value": "nepal"
+					}
+	],
+	"action": [
+					{
+					    "type": "simpleaction",
+						"field": "citizen",
+						"value": "nepal"
+					}
+	]
+}
