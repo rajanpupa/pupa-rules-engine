@@ -24,7 +24,7 @@ public class FrontendController {
     public FrontendController() throws IOException {
         // load the rules in the rules resource folder
         for( String fileName :  Arrays.asList("Nepali_citizen_rule", "Nepali_citizen_rule2") ){
-            rules.put(fileName, readFile(RULES_FOLDER + fileName));
+            rules.put(fileName, readFile(RULES_FOLDER + fileName + ".rule"));
         }
     }
 
@@ -41,7 +41,8 @@ public class FrontendController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public static String readFile(String path) throws IOException {
+    // util method to read file
+    private static String readFile(String path) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, Charset.defaultCharset());
     }

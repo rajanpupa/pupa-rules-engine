@@ -1,3 +1,16 @@
-<p>
-  rule-dashboard works!
-</p>
+<h3>Rules Engine Dashboard</h3>
+
+<p-table [value]="rules">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>SN:</th>
+      <th>Rule Name</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rule let-rowIndex="rowIndex">
+    <tr>
+      <td>{{rowIndex}}</td>
+      <td><a [routerLink]="['/rule-engine/detail/',rule]"> {{rule}} </a> </td>
+    </tr>
+  </ng-template>
+</p-table>

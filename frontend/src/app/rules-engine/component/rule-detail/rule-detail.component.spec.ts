@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RuleDashboardComponent } from './rule-dashboard.component';
+import { RuleDetailComponent } from './rule-detail.component';
 
-describe('RuleDashboardComponent', () => {
-  let component: RuleDashboardComponent;
-  let fixture: ComponentFixture<RuleDashboardComponent>;
+describe('RuleDetailComponent', () => {
+  let component: RuleDetailComponent;
+  let fixture: ComponentFixture<RuleDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RuleDashboardComponent ]
+      declarations: [ RuleDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RuleDashboardComponent);
+    fixture = TestBed.createComponent(RuleDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
