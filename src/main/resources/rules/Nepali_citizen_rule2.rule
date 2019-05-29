@@ -1,6 +1,6 @@
 {
 	"type": "rule",
-	"name": "Nepali citizen rule",
+	"name": "Nepali_citizen_rule2",
 	"conditions" : [
 					{
 					    "type": "orcondition",
