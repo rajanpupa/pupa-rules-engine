@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public abstract class Action {
     String type;
+    String name;
     String field;
     String value;
 

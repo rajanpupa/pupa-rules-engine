@@ -14,32 +14,38 @@ import java.util.List;
 
 @Component
 public class ConditionParser {
+    // CONDITION FIELDS
+    static final String  TYPE = "type";
+    static final String  FIELD = "field";
+    static final String  OPERATOR = "operator";
+    static final String  VALUE = "value";
+    static final String  CONDITIONS = "conditions";
 
     public List<Condition> parse(JsonNode conditionsNode) throws Exception {
         List<Condition> conditions = new ArrayList<>();
 
-        if(!conditionsNode.isArray()){
+        if( ! conditionsNode.isArray() ) {
             throw new Exception("Conditions should be an array");
         }
 
-        for(JsonNode conditionNode: conditionsNode){
-            String conditionType = conditionNode.get("type").asText();
+        for( JsonNode conditionNode: conditionsNode ) {
+            String conditionType = conditionNode.get(TYPE).asText();
             Condition newCondition = null;
 
-            if(ConditionTypeEnum.SIMPLE_CONDITION.toString().equalsIgnoreCase(conditionType)){
+            if( ConditionTypeEnum.SIMPLE_CONDITION.toString().equalsIgnoreCase(conditionType) ) {
                 newCondition = new SimpleCondition();
-                newCondition.setType(ConditionTypeEnum.SIMPLE_CONDITION);
-                newCondition.setField(conditionNode.get("field").asText());
-                newCondition.setOperator(getConditionOperator(conditionNode.get("operator").asText()));
-                newCondition.setValue(conditionNode.get("value").asText());
-            } else if(ConditionTypeEnum.AND_CONDITION.toString().equalsIgnoreCase(conditionType)){
+                newCondition.setType(ConditionTypeEnum.SIMPLE_CONDITION );
+                newCondition.setField( conditionNode.get(FIELD).asText() );
+                newCondition.setOperator( getConditionOperator( conditionNode.get(OPERATOR).asText() ) );
+                newCondition.setValue( conditionNode.get(VALUE).asText() );
+            } else if( ConditionTypeEnum.AND_CONDITION.toString().equalsIgnoreCase(conditionType) ){
                 newCondition = new AndCondition();
-                newCondition.setType(ConditionTypeEnum.AND_CONDITION);
-                newCondition.setConditions(parse(conditionNode.get("conditions")));
-            } else if(ConditionTypeEnum.OR_CONDITION.toString().equalsIgnoreCase(conditionType)){
+                newCondition.setType( ConditionTypeEnum.AND_CONDITION );
+                newCondition.setConditions( parse(conditionNode.get( CONDITIONS ) ) );
+            } else if( ConditionTypeEnum.OR_CONDITION.toString().equalsIgnoreCase( conditionType ) ){
                 newCondition = new ORCondition();
-                newCondition.setType(ConditionTypeEnum.OR_CONDITION);
-                newCondition.setConditions(parse(conditionNode.get("conditions")));
+                newCondition.setType( ConditionTypeEnum.OR_CONDITION );
+                newCondition.setConditions( parse( conditionNode.get( CONDITIONS ) ) );
             }
             conditions.add(newCondition);
         }

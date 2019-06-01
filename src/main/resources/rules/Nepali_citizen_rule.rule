@@ -3,14 +3,16 @@
 	"name": "Nepali_citizen_rule",
 	"conditions" : [
 					{
+					    "name": "birth country is nepal",
 					    "type": "simplecondition",
 						"field": "country_of_birth",
 						"operator": "equals",
 						"value": "nepal"
 					}
 	],
-	"action": [
+	"actions": [
 					{
+					    "name": "pupulate citizen as nepal",
 					    "type": "simpleaction",
 						"field": "citizen",
 						"value": "nepal"

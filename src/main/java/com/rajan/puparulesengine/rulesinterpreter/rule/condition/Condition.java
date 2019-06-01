@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public abstract class Condition {
     ConditionTypeEnum type;
+    String name;
     String field;
     OperatorEnum operator;
     String value;

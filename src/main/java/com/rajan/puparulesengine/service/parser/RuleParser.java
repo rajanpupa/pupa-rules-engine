@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 // parses from json to rules class
 @Component
 public class RuleParser {
+    // rule fields
+    static final String NAME = "name";
+    static final String TYPE = "type";
+    static final String CONDITIONS = "conditions";
+    static final String ACTIONS = "actions";
+
 
     @Autowired
     ConditionParser conditionParser;
@@ -19,10 +25,11 @@ public class RuleParser {
     public PupaRule parse(JsonNode ruleJson) throws Exception {
         PupaRule rule = new PupaRule();
 
-        rule.setName(ruleJson.get("name").asText());
-        rule.setType(ruleJson.get("type").asText());
-        rule.setConditions(conditionParser.parse(ruleJson.get("conditions")));
-        rule.setActions(actionParser.parse(ruleJson.get("action")));
+        rule.setName(ruleJson.get( NAME ).asText());
+        rule.setType(ruleJson.get( TYPE ).asText());
+
+        rule.setConditions( conditionParser.parse( ruleJson.get( CONDITIONS ) ) );
+        rule.setActions( actionParser.parse( ruleJson.get( ACTIONS ) ) );
 
         return rule;
     }

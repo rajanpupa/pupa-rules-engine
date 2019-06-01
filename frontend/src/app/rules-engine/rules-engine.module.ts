@@ -6,6 +6,7 @@ import { RuleDashboardComponent } from './component/rule-dashboard/rule-dashboar
 import { RuleCreateComponent } from './component/rule-create/rule-create.component';
 import {TableModule} from 'primeng/table';
 import { RuleDetailComponent } from './component/rule-detail/rule-detail.component';
+import {TreeModule} from 'primeng/tree';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RuleDetailComponent } from './component/rule-detail/rule-detail.compone
     CommonModule,
     RulesEngineRoutingModule,
     TableModule,
+    TreeModule,
   ]
 })
 export class RulesEngineModule { }

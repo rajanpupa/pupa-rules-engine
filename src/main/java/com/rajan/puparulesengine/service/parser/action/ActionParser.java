@@ -10,6 +10,12 @@ import java.util.List;
 
 @Component
 public class ActionParser {
+    // ACTION FIELDS
+    static final String  TYPE = "type";
+    static final String  FIELD = "field";
+    static final String  VALUE = "value";
+    // action types
+    static final String  SIMPLE_ACTION = "simpleaction";
 
     public List<Action> parse(JsonNode actionsNode) throws Exception {
         List<Action> actions = new ArrayList<>();
@@ -19,14 +25,14 @@ public class ActionParser {
         }
 
         for(JsonNode actionNode: actionsNode){
-            String actionType = actionNode.get("type").asText();
+            String actionType = actionNode.get(TYPE).asText();
             Action action = null;
 
-            if("simpleaction".equalsIgnoreCase(actionType)){
+            if( SIMPLE_ACTION.equalsIgnoreCase(actionType) ){
                 action = new SimpleAction();
-                action.setType("simpleaction");
-                action.setField(actionNode.get("field").asText());
-                action.setValue(actionNode.get("value").asText());
+                action.setType( SIMPLE_ACTION );
+                action.setField(actionNode.get(FIELD).asText());
+                action.setValue(actionNode.get(VALUE).asText());
             }
             actions.add(action);
         }
