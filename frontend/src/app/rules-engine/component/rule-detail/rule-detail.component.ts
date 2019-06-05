@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {RulesService} from '../../service/rules.service';
 import {TreeNode} from 'primeng/api';
-import {RuleToTreeNodeMapperService} from './mapper/rule-to-tree-node-mapper.service';
+import {RuleToTreeNodeMapperService} from '../../service/mapper/rule-to-tree-node-mapper.service';
 
 @Component({
   selector: 'app-rule-detail',

@@ -1,3 +1,26 @@
-<p>
-  rule-create works!
-</p>
+<h3>
+  Create New Rule
+</h3>
+<div class="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12">
+
+  <div class="ui-g-6 bordered" id="left-block">
+    <p-tree [value]="ruleTree"
+            selectionMode="single"
+            [(selection)]="selectedTreeNode"
+            (onNodeSelect)="nodeSelect($event)"
+            (onNodeUnselect)="nodeUnSelect($event)"
+    ></p-tree>
+  </div>
+  <div class="ui-g-6 bordered" id="right-block" [ngSwitch]="activeIndex">
+
+    <div *ngSwitchCase=0>
+      Select a Node to edit its properties.
+    </div>
+    <div *ngSwitchCase=typeConstants.CONDITION_PARENT>
+      No Property to Edit for this Node
+    </div>
+    <div *ngSwitchCase=typeConstants.CONDITION_OR>
+      No Property to Edit for this Node
+    </div>
+  </div>
+</div>

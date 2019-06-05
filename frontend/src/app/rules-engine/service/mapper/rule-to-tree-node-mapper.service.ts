@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {TreeNode} from 'primeng/api';
-import {PupaRule} from '../../../model/PupaRule';
-import {Condition} from '../../../model/Condition';
+import {PupaRule} from '../../model/PupaRule';
+import {Condition} from '../../model/Condition';
 
 @Injectable({
   providedIn: 'root'

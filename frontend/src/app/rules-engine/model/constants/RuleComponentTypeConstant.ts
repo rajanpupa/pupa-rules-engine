@@ -1,0 +1,11 @@
+export const RuleComponentTypeConstant = {
+  PUPA_RULE: 0,
+
+  CONDITION_PARENT: 1,
+  CONDITION_SIMPLE: 2,
+  CONDITION_AND: 3,
+  CONDITION_OR: 4,
+
+  ACTION_PARENT: 5,
+  ACTION_SIMPLE: 6
+};

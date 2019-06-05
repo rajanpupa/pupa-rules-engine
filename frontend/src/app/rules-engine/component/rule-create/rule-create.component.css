@@ -1,0 +1,8 @@
+/deep/ .ui-tree {
+  width: 40em;
+}
+
+.bordered {
+  border: 1px solid black;
+  min-height: 20em;
+}
