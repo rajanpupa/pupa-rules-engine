@@ -3,7 +3,7 @@
 </h3>
 <div class="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12">
 
-  <div class="ui-g-6 bordered" id="left-block">
+  <div class="ui-g-4 bordered" id="left-block">
     <p-tree [value]="ruleTree"
             selectionMode="single"
             [(selection)]="selectedTreeNode"
@@ -11,16 +11,119 @@
             (onNodeUnselect)="nodeUnSelect($event)"
     ></p-tree>
   </div>
-  <div class="ui-g-6 bordered" id="right-block" [ngSwitch]="activeIndex">
+  <div class="ui-g-2 bordered" id="mid-block" [ngSwitch]="activeNodeIndex">
+      <div *ngSwitchCase=0>
+        Select a Node to edit it.
+      </div>
+      <div *ngSwitchCase=typeConstants.PUPA_RULE>
+        Change the name of the Rule.
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_PARENT>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(1)">Add a Simple Condition</p-button></div>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(2)">Add a And Condition</p-button></div>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(3)">Add a Or  Condition</p-button></div>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_OR>
+        Or condition selected
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_AND>
+        And condition selected
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_SIMPLE>
+        Simple Condition selected
+      </div>
+      <div *ngSwitchCase=typeConstants.ACTION_PARENT>
+        Action parent selected
+      </div>
+  </div>
+  <div class="ui-g-6 bordered" id="right-block" [ngSwitch]="activeNodeIndex">
+      <div *ngSwitchCase=0>
+        Select a Node to edit it.
+      </div>
+      <div *ngSwitchCase=typeConstants.PUPA_RULE>
+        <input type="text" [(ngModel)]="selectedTreeNode.data.name">
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_PARENT>
+        Condition parent
+        <div ngSwitch=1>
+          <!--Add simple Condition-->
+          <div class="form-group">
+              <div>
+                <label class="form-label " for="simple_condition_name">
+                  <span>*</span>Name
+                </label>:
+                <input
+                  id="simple_condition_name"
+                  type="text"
+                  [(ngModel)]="newCondition.name"
+                  class="form-element"
+                  pTooltip="Enter Name"
+                  pInputText
+                />
+              </div>
+            <div>
+              <label class="form-label " for="simple_condition_field">
+                <span>*</span>Field
+              </label>:
+              <input
+                id="simple_condition_field"
+                type="text"
+                [(ngModel)]="newCondition.field"
+                class="form-element"
+                pTooltip="Enter Field Name"
+                pInputText
+              />
+            </div>
+            <div>
+              <label class="form-label " for="simple_condition_operator">
+                <span>*</span>Operator
+              </label>:
+              <input
+                id="simple_condition_operator"
+                type="text"
+                [(ngModel)]="newCondition.operator"
+                class="form-element"
+                pTooltip="Enter Operator"
+                pInputText
+              />
+            </div>
+            <div>
+              <label class="form-label " for="simple_condition_value">
+                <span>*</span>Value
+              </label>:
+              <input
+                id="simple_condition_value"
+                type="text"
+                [(ngModel)]="newCondition.value"
+                class="form-element"
+                pTooltip="Enter Value"
+                pInputText
+              />
+            </div>
+            <div>
+              <button
+                pButton
+                type="submit"
+                label="Save"
+                class="ui-button-submit"
+                (click)="saveCondition()"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_OR>
+        Or condition selected
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_SIMPLE>
+        Simple Condition selected
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_AND>
+        And condition selected
+      </div>
+      <div *ngSwitchCase=typeConstants.ACTION_PARENT>
+        Action parent selected
+      </div>
 
-    <div *ngSwitchCase=0>
-      Select a Node to edit its properties.
-    </div>
-    <div *ngSwitchCase=typeConstants.CONDITION_PARENT>
-      No Property to Edit for this Node
-    </div>
-    <div *ngSwitchCase=typeConstants.CONDITION_OR>
-      No Property to Edit for this Node
-    </div>
   </div>
 </div>

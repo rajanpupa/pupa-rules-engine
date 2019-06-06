@@ -48,7 +48,7 @@ export class RuleToTreeNodeMapperService {
     for ( const condition of conditions) {
       const childTree = this.mapConditions(condition.conditions);
       condTreeArray.push({
-        label: condition.type + ': ' + condition.name,
+        label: condition.name,
         data: condition,
         children: childTree,
       });

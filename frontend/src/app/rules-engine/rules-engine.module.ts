@@ -7,6 +7,8 @@ import { RuleCreateComponent } from './component/rule-create/rule-create.compone
 import {TableModule} from 'primeng/table';
 import { RuleDetailComponent } from './component/rule-detail/rule-detail.component';
 import {TreeModule} from 'primeng/tree';
+import {FormsModule} from "@angular/forms";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import {TreeModule} from 'primeng/tree';
     RulesEngineRoutingModule,
     TableModule,
     TreeModule,
+    FormsModule,
+    ButtonModule
   ]
 })
 export class RulesEngineModule { }
