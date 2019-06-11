@@ -4,7 +4,7 @@ export class Condition {
   name: string;
 
   // field set for orcondition, andcondition
-  conditions: Condition[];
+  conditions: Condition[]=[];
 
   // simplecondition properties
   field: string;

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {TreeNode} from 'primeng/api';
 import {PupaRule} from '../../model/PupaRule';
 import {Condition} from '../../model/Condition';
+import {Action} from "../../model/Action";
 
 @Injectable({
   providedIn: 'root'

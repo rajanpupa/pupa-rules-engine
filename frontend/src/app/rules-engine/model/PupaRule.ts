@@ -1,4 +1,5 @@
 import {Condition} from './Condition';
+import {Action} from "./Action";
 
 export class PupaRule {
   type: string;

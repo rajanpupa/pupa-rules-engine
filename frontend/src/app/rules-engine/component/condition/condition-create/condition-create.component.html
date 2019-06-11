@@ -1,0 +1,70 @@
+<div>
+  <div class="form-group">
+    <div>
+      <label class="form-label " for="condition_name">
+        <span>*</span>Name
+      </label>:
+      <input
+        id="condition_name"
+        type="text"
+        [(ngModel)]="condition.name"
+        class="form-element"
+        pTooltip="Enter Name"
+        [disabled]="!editable"
+        pInputText
+      />
+    </div>
+    <div>
+      <label class="form-label " for="condition_field">
+        <span>*</span>Field
+      </label>:
+      <input
+        id="condition_field"
+        type="text"
+        [(ngModel)]="condition.field"
+        class="form-element"
+        pTooltip="Enter Field Name"
+        [disabled]="!editable"
+        pInputText
+      />
+    </div>
+    <div>
+      <label class="form-label " for="condition_operator">
+        <span>*</span>Operator
+      </label>:
+      <input
+        id="condition_operator"
+        type="text"
+        [(ngModel)]="condition.operator"
+        class="form-element"
+        pTooltip="Enter Operator"
+        [disabled]="!editable"
+        pInputText
+      />
+    </div>
+    <div>
+      <label class="form-label " for="condition_value">
+        <span>*</span>Value
+      </label>:
+      <input
+        id="condition_value"
+        type="text"
+        [(ngModel)]="condition.value"
+        class="form-element"
+        pTooltip="Enter Value"
+        [disabled]="!editable"
+        pInputText
+      />
+    </div>
+    <div>
+      <button
+        *ngIf="editable"
+        pButton
+        type="submit"
+        label="Save"
+        class="ui-button-submit"
+        (click)="saveCondition()"
+      ></button>
+    </div>
+  </div>
+</div>

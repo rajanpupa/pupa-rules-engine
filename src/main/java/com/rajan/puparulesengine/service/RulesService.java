@@ -2,6 +2,7 @@ package com.rajan.puparulesengine.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rajan.puparulesengine.repository.InMemoryRulesRepository;
 import com.rajan.puparulesengine.rulesinterpreter.rule.PupaRule;
 import com.rajan.puparulesengine.service.parser.RuleParser;
 import com.rajan.puparulesengine.utils.FileUtil;
@@ -20,6 +21,9 @@ public class RulesService {
     @Autowired
     ObjectMapper objectMapper ;//= new ObjectMapper();
 
+    @Autowired
+    InMemoryRulesRepository inMemoryRulesRepository;
+
     // evaluates the business rulesinterpreter
     // returns the result
     public void evaluate(JsonNode node, List<String> rules) throws Exception {
@@ -32,8 +36,9 @@ public class RulesService {
     }
 
     private PupaRule loadRule(String ruleName) throws Exception {
-        String fileName = "src/main/resources/rules/" + ruleName + ".rule";
-        String ruleJson = FileUtil.readFile(fileName);// load rule json here
+        //String fileName = "src/main/resources/rules/" + ruleName + ".rule";
+        //String ruleJson = FileUtil.readFile(fileName);// load rule json here
+        String ruleJson = this.inMemoryRulesRepository.getRule(ruleName);
         JsonNode ruleNode = objectMapper.readTree(ruleJson);
         return ruleParser.parse(ruleNode);
     }

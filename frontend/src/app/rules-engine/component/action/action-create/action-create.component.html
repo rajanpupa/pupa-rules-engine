@@ -1,0 +1,70 @@
+<div>
+  <div class="form-group">
+    <div>
+      <label class="form-label " for="action_name">
+        <span>*</span>Name
+      </label>:
+      <input
+        id="action_name"
+        type="text"
+        [(ngModel)]="action.name"
+        class="form-element"
+        pTooltip="Enter Name"
+        [disabled]="!editable"
+        pInputText
+      />
+    </div>
+    <div>
+      <label class="form-label " for="action_field">
+        <span>*</span>Field
+      </label>:
+      <input
+        id="action_field"
+        type="text"
+        [(ngModel)]="action.field"
+        class="form-element"
+        pTooltip="Enter Field Name"
+        [disabled]="!editable"
+        pInputText
+      />
+    </div>
+    <!--<div>-->
+      <!--<label class="form-label " for="action_operator">-->
+        <!--<span>*</span>Operator-->
+      <!--</label>:-->
+      <!--<input-->
+        <!--id="action_operator"-->
+        <!--type="text"-->
+        <!--[(ngModel)]="action.operator"-->
+        <!--class="form-element"-->
+        <!--pTooltip="Enter Operator"-->
+        <!--[disabled]="!editable"-->
+        <!--pInputText-->
+      <!--/>-->
+    <!--</div>-->
+    <div>
+      <label class="form-label " for="action_value">
+        <span>*</span>Value
+      </label>:
+      <input
+        id="action_value"
+        type="text"
+        [(ngModel)]="action.value"
+        class="form-element"
+        pTooltip="Enter Value"
+        [disabled]="!editable"
+        pInputText
+      />
+    </div>
+    <div>
+      <button
+        *ngIf="editable"
+        pButton
+        type="submit"
+        label="Save"
+        class="ui-button-submit"
+        (click)="saveAction()"
+      ></button>
+    </div>
+  </div>
+</div>

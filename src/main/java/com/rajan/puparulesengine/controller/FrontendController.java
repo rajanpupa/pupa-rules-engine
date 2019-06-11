@@ -1,11 +1,10 @@
 package com.rajan.puparulesengine.controller;
 
+import com.rajan.puparulesengine.repository.InMemoryRulesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -17,34 +16,31 @@ import java.util.*;
 @RequestMapping("/ui")
 public class FrontendController {
 
-    Map<String, String> rules = new HashMap<>();
-
-    static final String RULES_FOLDER = "src/main/resources/rules/";
+    @Autowired
+    InMemoryRulesRepository inMemoryRulesRepository;
 
     public FrontendController() throws IOException {
-        // load the rules in the rules resource folder
-        for( String fileName :  Arrays.asList("Nepali_citizen_rule", "Nepali_citizen_rule2") ){
-            rules.put(fileName, readFile(RULES_FOLDER + fileName + ".rule"));
-        }
     }
 
     @GetMapping("/rules")
     public Collection<String> getRules(){
-        return rules.keySet();
+        return this.inMemoryRulesRepository.getRules();
     }
 
     @GetMapping("/rules/{ruleName}")
     public ResponseEntity<String> getRuleDetail(@PathVariable("ruleName")String ruleName){
-        if(rules.containsKey(ruleName)){
-            return new ResponseEntity<>(rules.get(ruleName), HttpStatus.OK);
+        if(this.inMemoryRulesRepository.containsKey(ruleName)){
+            return new ResponseEntity<>(this.inMemoryRulesRepository.getRule(ruleName), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // util method to read file
-    private static String readFile(String path) throws IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get(path));
-        return new String(encoded, Charset.defaultCharset());
+    @PostMapping("/rules/create/{ruleName}")
+    public ResponseEntity<String> createNewRule(@RequestBody String rule, @PathVariable String ruleName){
+        System.out.println("=== new rule being created ### ");
+        this.inMemoryRulesRepository.setRule(ruleName, rule);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 }
