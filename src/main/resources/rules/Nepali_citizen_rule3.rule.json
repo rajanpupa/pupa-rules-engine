@@ -1,0 +1,83 @@
+{
+    "type": "ruleset",
+    "name": "nepali_citizenship_ruleset",
+    "rules": [
+        {
+        	"type": "rule",
+        	"name": "Nepali_citizen_rule2",
+        	"conditions" : [
+        					{
+        					    "type": "orcondition",
+        					    "name": "born in nepal or father is nepali or mother is nepali",
+        					    "conditions": [
+        					            {
+        					                "name": "birth country is nepal",
+        					                "type": "simplecondition",
+        					                "field": "country_of_birth",
+                                            "operator": "equals",
+                                            "value": "nepal"
+        					            },
+        					            {
+        					                "name": "father is nepali citizen",
+        					                "type": "simplecondition",
+        					                "field": "citizenship_of_father",
+        					                "operator": "equals",
+        					                "value": "nepal"
+        					            },
+        					            {
+        					                "name": "mother is nepali citizen",
+                                            "type": "simplecondition",
+                                            "field": "citizenship_of_mother",
+                                            "operator": "equals",
+                                            "value": "nepal"
+                                        }
+        					    ]
+
+        					},
+        					{
+                            					    "type": "andcondition",
+                            					    "name": "citizenship is not known",
+                            					    "conditions": [
+                            					            {
+                                                                "type": "simplecondition",
+                                                                "name": "citizenship field not set",
+                                                                "field": "citizen",
+                                                                "operator": "fieldnotset",
+                                                                "value": ""
+                                                            }
+                            					    ]
+                            }
+        	],
+        	"actions": [
+        					{
+        					    "name": "set citizen as nepal",
+        					    "type": "simpleaction",
+        						"field": "citizen",
+        						"value": "nepal"
+        					}
+        	]
+        },
+		{
+			"type": "rule",
+			"name": "people of name rajan are awesome",
+			"conditions" : [
+				{
+					"name": "name is rajan",
+					"type": "simplecondition",
+					"field": "name",
+					"operator": "equalsignorecase",
+					"value": "rajan"
+				}
+			],
+			"actions": [
+				{
+					"name": "populate classification as awesome",
+					"type": "simpleaction",
+					"field": "classification",
+					"value": "awesome"
+				}
+			]
+		}
+    ]
+
+}

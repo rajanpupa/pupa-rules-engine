@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rules")
+@RequestMapping("/evaluate/ruleSet")
 public class RulesController {
 
     @Autowired
@@ -19,11 +19,30 @@ public class RulesController {
         return "pong";
     }
 
-    @PostMapping("/evaluate")
-    public JsonNode evaluate(@RequestBody JsonNode request,
-                             @RequestParam List<String> rule) throws Exception {
-        //String ruleName = "citizen";
-        this.rulesService.evaluate(request, rule);
+    // evaluation of rule level is deprecated.
+//    @PostMapping("/evaluate")
+//    public JsonNode evaluate(
+//            @RequestBody JsonNode request,
+//            @RequestParam List<String> rule
+//    ) throws Exception {
+//        this.rulesService.evaluate(request, rule);
+//        return request;
+//    }
+
+    /**
+     * A rule set is a combination of multiple rules
+     * A rule has multiple condition and set of actions
+     * @param request
+     * @param ruleSet
+     * @return
+     * @throws Exception
+     */
+    @PostMapping
+    public JsonNode evaluateRuleSet(
+            @RequestBody JsonNode request,
+            @RequestParam List<String> ruleSet
+    ) throws Exception {
+        this.rulesService.evaluate(request, ruleSet);
         return request;
     }
 

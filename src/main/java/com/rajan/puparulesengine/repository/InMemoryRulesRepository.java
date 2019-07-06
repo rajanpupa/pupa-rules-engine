@@ -18,8 +18,14 @@ public class InMemoryRulesRepository {
     Map<String, String> rules = new HashMap<>();
 
     public InMemoryRulesRepository() throws IOException {
-        for( String fileName :  Arrays.asList("Nepali_citizen_rule", "Nepali_citizen_rule2") ){
-            rules.put(fileName, readFile(RULES_FOLDER + fileName + ".rule"));
+        // load normal rule files
+//        for( String fileName :  Arrays.asList("Nepali_citizen_rule", "Nepali_citizen_rule2") ){
+//            rules.put(fileName, readFile(RULES_FOLDER + fileName + ".rule"));
+//        }
+
+        // load ruleset files
+        for( String fileName :  Arrays.asList("Nepali_citizen_rule3") ){
+            rules.put(fileName, readFile(RULES_FOLDER + fileName + ".rule.json"));
         }
     }
 

@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 @RestController
-@RequestMapping("/ui")
+@RequestMapping("/ui/ruleSets")
 public class FrontendController {
 
     @Autowired
@@ -22,23 +22,23 @@ public class FrontendController {
     public FrontendController() throws IOException {
     }
 
-    @GetMapping("/rules")
+    @GetMapping
     public Collection<String> getRules(){
         return this.inMemoryRulesRepository.getRules();
     }
 
-    @GetMapping("/rules/{ruleName}")
-    public ResponseEntity<String> getRuleDetail(@PathVariable("ruleName")String ruleName){
-        if(this.inMemoryRulesRepository.containsKey(ruleName)){
-            return new ResponseEntity<>(this.inMemoryRulesRepository.getRule(ruleName), HttpStatus.OK);
+    @GetMapping("{ruleSetName}")
+    public ResponseEntity<String> getRuleDetail(@PathVariable("ruleSetName")String ruleSetName){
+        if(this.inMemoryRulesRepository.containsKey(ruleSetName)){
+            return new ResponseEntity<>(this.inMemoryRulesRepository.getRule(ruleSetName), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/rules/create/{ruleName}")
-    public ResponseEntity<String> createNewRule(@RequestBody String rule, @PathVariable String ruleName){
-        System.out.println("=== new rule being created ### ");
-        this.inMemoryRulesRepository.setRule(ruleName, rule);
+    @PostMapping("create/{ruleSetName}")
+    public ResponseEntity<String> createNewRule(@RequestBody String ruleSet, @PathVariable String ruleSetName){
+        System.out.println("=== new ruleSet being created ### ");
+        this.inMemoryRulesRepository.setRule(ruleSetName, ruleSet);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
