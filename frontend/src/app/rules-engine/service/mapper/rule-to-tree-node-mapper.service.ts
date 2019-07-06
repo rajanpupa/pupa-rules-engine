@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {TreeNode} from 'primeng/api';
 import {PupaRule} from '../../model/PupaRule';
 import {Condition} from '../../model/Condition';
 import {Action} from "../../model/Action";
+import {PupaRuleSet} from "../../model/PupaRuleSet";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,26 @@ export class RuleToTreeNodeMapperService {
   constructor() { }
 
   // returns a list of TreeNode wrapped in data
-  public ruleToTreeNode(rule: PupaRule): TreeNode[]  {
-    const treeNode = this.mapToTreeNode(rule);
-    const arr = [];
-    arr.push(treeNode);
-    return arr;
+  public ruleToTreeNode(ruleSet: PupaRuleSet): TreeNode[]  {
+    const rules = [];
+
+    for(const rule of ruleSet.rules){
+      const treeNode = this.mapToTreeNode(rule);
+      rules.push(treeNode);
+    }
+
+    return [{
+      label: ruleSet.name,
+      data: ruleSet,
+      expandedIcon: 'fa fa-registered ',
+      collapsedIcon: 'fa fa-registered ',
+      children: [
+        {
+          label: 'rules',
+          children: rules,
+        }
+      ]
+    }];
   }
 
   private mapToTreeNode(rule: PupaRule): any {

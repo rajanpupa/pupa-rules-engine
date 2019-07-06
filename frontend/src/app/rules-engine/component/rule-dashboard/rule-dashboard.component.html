@@ -10,7 +10,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-rule let-rowIndex="rowIndex">
       <tr>
-        <td>{{rowIndex}}</td>
+        <td>{{ rowIndex + 1 }}</td>
         <td><a [routerLink]="['/rule-engine/detail/',rule]"> {{rule}} </a></td>
       </tr>
     </ng-template>

@@ -24,7 +24,7 @@ export class RuleDetailComponent implements OnInit {
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(
       (params: ParamMap) => {
-        this.ruleName = params.get('ruleName');
+        this.ruleName = params.get('ruleSetName');
 
         // get the rule detail from backend
         this.ruleService.getRuleDetail(this.ruleName).subscribe(data => {
@@ -34,8 +34,6 @@ export class RuleDetailComponent implements OnInit {
         });
       }
     );
-
-
   }
 
 }

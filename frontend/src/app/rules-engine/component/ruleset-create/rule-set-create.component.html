@@ -1,0 +1,87 @@
+<h3>
+  Create New Rule
+</h3>
+<div class="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12">
+
+  <div class="ui-g-4 bordered" id="left-block">
+    <p-tree [value]="ruleTree"
+            selectionMode="single"
+            [(selection)]="selectedTreeNode"
+            (onNodeSelect)="nodeSelect($event)"
+            (onNodeUnselect)="nodeUnSelect($event)"
+    ></p-tree>
+
+    <p-button (onClick)="createNewRuleSet()">Save New Rule</p-button>
+  </div>
+  <div class="ui-g-2 bordered" id="mid-block" [ngSwitch]="activeNodeIndex">
+      <div *ngSwitchCase=0>
+        Select a Node to edit it.
+      </div>
+      <div *ngSwitchCase=typeConstants.PUPA_RULE_SET>
+        Change the name of the RuleSet.
+      </div>
+      <div *ngSwitchCase=typeConstants.PUPA_RULE>
+        Change the name of the Rule.
+      </div>
+      <div *ngSwitchCase=typeConstants.RULES_PARENT>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(1)">Add a New Rule</p-button></div>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_PARENT>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(1)">Add a Simple Condition</p-button></div>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(2)">Add a And Condition</p-button></div>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(3)">Add a Or  Condition</p-button></div>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_AND>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(1)">Add a Simple Condition</p-button></div>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(2)">Add a And Condition</p-button></div>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(3)">Add a Or  Condition</p-button></div>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_OR>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(1)">Add a Simple Condition</p-button></div>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(2)">Add a And Condition</p-button></div>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(3)">Add a Or  Condition</p-button></div>
+      </div>
+
+      <div *ngSwitchCase=typeConstants.CONDITION_SIMPLE>
+        Simple Condition selected. No Additional Operations.
+      </div>
+      <div *ngSwitchCase=typeConstants.ACTION_PARENT>
+        <div class="button-cls"><p-button (onClick)="setActiveButtonIndex(1)">Add a Simple Action</p-button></div>
+      </div>
+  </div>
+  <div class="ui-g-6 bordered" id="right-block" [ngSwitch]="activeNodeIndex">
+      <div *ngSwitchCase=0>
+        Select a Node to edit it.
+      </div>
+      <div *ngSwitchCase=typeConstants.PUPA_RULE_SET>
+        <input type="text" [(ngModel)]="selectedTreeNode.data.name">
+      </div>
+      <div *ngSwitchCase=typeConstants.PUPA_RULE>
+        <input type="text" [(ngModel)]="selectedTreeNode.data.name">
+      </div>
+      <div *ngSwitchCase=typeConstants.RULES_PARENT>
+        <!-- Add new rule -->
+        <app-rule-create [rule]="getNewRule()" [editable]="true" (dataEvent)="saveRule($event)"></app-rule-create>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_PARENT>
+        <!-- Add new Condition -->
+        <app-condition-create [condition]="newCondition" [editable]="true" (dataEvent)="saveCondition($event)"></app-condition-create>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_AND>
+        <app-condition-create [condition]="newCondition" [editable]="true" (dataEvent)="saveCondition($event)"></app-condition-create>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_OR>
+        <app-condition-create [condition]="newCondition" [editable]="true" (dataEvent)="saveCondition($event)"></app-condition-create>
+      </div>
+      <div *ngSwitchCase=typeConstants.CONDITION_SIMPLE>
+        <app-condition-create [condition]="newCondition" [editable]="true" (dataEvent)="saveCondition($event)"></app-condition-create>
+      </div>
+
+      <div *ngSwitchCase=typeConstants.ACTION_PARENT>
+        <app-action-create [action]="newAction" [editable]="true" (dataEvent)="saveAction($event)"></app-action-create>
+      </div>
+      <div *ngSwitchCase=typeConstants.ACTION_SIMPLE>
+        <app-action-create [action]="newAction" [editable]="true" ></app-action-create>
+      </div>
+  </div>
+</div>

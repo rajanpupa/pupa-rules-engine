@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RuleDashboardComponent} from './component/rule-dashboard/rule-dashboard.component';
-import {RuleCreateComponent} from './component/rule-create/rule-create.component';
+import {RuleSetCreateComponent} from './component/ruleset-create/rule-set-create.component';
 import {RuleDetailComponent} from './component/rule-detail/rule-detail.component';
 
 const routes: Routes = [
@@ -11,11 +11,19 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: RuleCreateComponent
+    component: RuleSetCreateComponent,
+    data: {
+      isNewCreate: true,
+      isEdit: false
+    }
   },
   {
-    path: 'detail/:ruleName',
-    component: RuleDetailComponent
+    path: 'detail/:ruleSetName',
+    component: RuleSetCreateComponent,
+    data: {
+      isNewCreate: false,
+      isEdit: true
+    }
   }
 ];
 

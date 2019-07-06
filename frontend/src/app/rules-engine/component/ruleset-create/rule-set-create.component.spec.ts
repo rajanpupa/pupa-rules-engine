@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RuleCreateComponent } from './rule-create.component';
+import { RuleSetCreateComponent } from './rule-set-create.component';
 
 describe('RuleSetCreateComponent', () => {
-  let component: RuleCreateComponent;
-  let fixture: ComponentFixture<RuleCreateComponent>;
+  let component: RuleSetCreateComponent;
+  let fixture: ComponentFixture<RuleSetCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RuleCreateComponent ]
+      declarations: [ RuleSetCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RuleCreateComponent);
+    fixture = TestBed.createComponent(RuleSetCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
